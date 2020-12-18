@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 
-def home_view(request):
-    return render(request,'login.html',{})
+def lift_view(request):
+    return render(request,'bayi/siparis.html',{})
 
 # Create your views here.

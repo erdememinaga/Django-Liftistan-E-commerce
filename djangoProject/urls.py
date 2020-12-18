@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 
 from bayi.views import bayi_view
-from lift.views import home_view
+from lift.views import lift_view
+from login.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home_view),
     path('bayi/',bayi_view),
+    path('sistem/siparisler', lift_view),
+
 ]

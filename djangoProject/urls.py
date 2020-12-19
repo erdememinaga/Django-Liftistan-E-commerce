@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from bayi.views import bayi_view
+from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
+    bayi_siparisdetay, bayi_siparisozet
 from lift.views import lift_view
 from login.views import home_view
 
@@ -25,5 +26,12 @@ urlpatterns = [
     path('',home_view),
     path('bayi/',bayi_view),
     path('sistem/siparisler', lift_view),
+    path('bayi/urun_ekle', bayi_urunekle),
+    path('bayi/bayi_listesi', bayi_bayilist),
+    path('bayi/urun_siparis', bayi_urunsiparis),
+    path('bayi/urunler', bayi_urunler),
+    path('bayi/bayi_detay', bayi_bayidetay),
+    path('bayi/siparis_detay', bayi_siparisdetay),
+    path('bayi/siparis_ozeti', bayi_siparisozet)
 
 ]

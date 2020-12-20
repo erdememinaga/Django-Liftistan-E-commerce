@@ -1,5 +1,4 @@
 """djangoProject URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
@@ -36,5 +35,12 @@ urlpatterns = [
     path('bayi/siparis_ozeti', bayi_siparisozet)
 
 ]
+
 admin.site.site_title = "Liftistan Sistem Yöneticisi"
 admin.site.site_header = "Liftistan Admin Paneli"
+admin.site.index_title = "Liftistan Admin Paneline Hoşgeldiniz"
+
+
+
+
+

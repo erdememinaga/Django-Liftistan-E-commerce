@@ -14,8 +14,8 @@ def bayi_siparisdetay(request):
     return render(request,'bayi/siparis_detay.html', {})
 def bayi_profilduzenle(request):
     return render(request,'bayi/profil_duzenle.html', {})
-def bayi_siparisdetay(request):
-    return render(request,'bayi/siparis_detay.html', {})
+def bayi_siparis(request):
+    return render(request,'bayi/siparis.html',{})
 def bayi_urunekle(request):
     return render(request,'bayi/urun_ekle.html', {})
 def bayi_siparisozet(request):

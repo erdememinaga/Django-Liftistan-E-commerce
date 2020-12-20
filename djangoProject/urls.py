@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path
 
 from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
-    bayi_siparisdetay, bayi_siparisozet
-from lift.views import lift_view
+    bayi_siparisdetay, bayi_siparisozet, bayi_siparis
+
 from login.views import home_view
 
 urlpatterns = [
@@ -26,7 +26,7 @@ urlpatterns = [
 
     path('',home_view),
     path('bayi/',bayi_view),
-    path('sistem/siparisler', lift_view),
+    path('bayi/siparis', bayi_siparis),
     path('bayi/urun_ekle', bayi_urunekle),
     path('bayi/bayi_listesi', bayi_bayilist),
     path('bayi/urun_siparis', bayi_urunsiparis),

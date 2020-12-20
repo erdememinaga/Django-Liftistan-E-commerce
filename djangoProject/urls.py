@@ -23,6 +23,7 @@ from login.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('',home_view),
     path('bayi/',bayi_view),
     path('sistem/siparisler', lift_view),
@@ -35,3 +36,5 @@ urlpatterns = [
     path('bayi/siparis_ozeti', bayi_siparisozet)
 
 ]
+admin.site.site_title = "Liftistan Sistem Yöneticisi"
+admin.site.site_header = "Liftistan Admin Paneli"

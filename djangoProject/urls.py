@@ -38,3 +38,4 @@ urlpatterns = [
 ]
 admin.site.site_title = "Liftistan Sistem Yöneticisi"
 admin.site.site_header = "Liftistan Admin Paneli"
+admin.site.index_title = "Liftistan Admin Paneline Hoşgeldiniz"

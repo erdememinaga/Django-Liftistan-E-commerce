@@ -20,5 +20,6 @@ def bayi_urunekle(request):
     return render(request,'bayi/urun_ekle.html', {})
 def bayi_siparisozet(request):
     return render(request,'bayi/siparis_ozet.html', {})
-
+def home_view(request):
+    return render(request, 'login.html', {})
 

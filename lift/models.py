@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 from django.db import models
 
@@ -29,8 +28,6 @@ class Siparis(models.Model):
         verbose_name = 'Bayi Sipariş'
         verbose_name_plural = 'Bayi Siparişleri'
 
-        def __str__(self):
-            return self.bayi
 
 class Odeme(models.Model):
     bayiler_siparis = models.ForeignKey(Siparis,on_delete=models.CASCADE)
@@ -69,8 +66,8 @@ class Recete(models.Model):
         verbose_name = 'Reçete'
         verbose_name_plural = 'Reçeteler'
 
-        def __str__(self):
-            return self.char
+    def __str__(self):
+        return self.urunler
 
 class Bakim(models.Model):
 
@@ -85,3 +82,6 @@ class Bakim(models.Model):
 
     def __str__(self):
         return self.islem_turu
+
+
+

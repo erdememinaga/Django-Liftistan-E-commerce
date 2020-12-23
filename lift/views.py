@@ -4,9 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 # Create your views here.
-
+from bayi.models import Bayi_bilgi
 
 
 def home_view(request):
@@ -41,8 +41,7 @@ def login(request):
         return HttpResponseRedirect("/")
 
 
-def djang_logout(request):
-    pass
+
 
 
 @login_required
@@ -51,3 +50,33 @@ def logout(request):
     auth.logout(request)
 
     return redirect('')
+
+def register_view(request):
+    return render(request, 'register.html',{})
+
+def singup(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        isim = request.POST["isim"]
+        soyisim = request.POST["soyisim"]
+
+        # telefon = request.POST["telefon"]
+        email = request.POST["email"]
+        password_check = request.POST["password_check"]
+        password = request.POST["password"]
+        # adres = request.POST["adres"]
+
+        if (password != password_check):
+            messages.error(request, " Passwords do not match")
+            return redirect('')
+        user = User.objects.create_user(username,email,password)
+        user.first_name = isim
+        user.last_name = soyisim
+        user.save()
+        auth.login(request,user)
+        # bilgiler = Bayi_bilgi(bayis = username, telefon = telefon , adres = adres)
+        # bilgiler.save()
+        messages.success(request, " Your iCoder has been successfully created")
+        return redirect('/bayi/')
+    else:
+        return HttpResponseRedirect("/")

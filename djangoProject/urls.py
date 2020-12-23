@@ -18,11 +18,13 @@ from django.urls import path, include
 import lift
 from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
     bayi_siparisdetay, bayi_siparisozet, bayi_siparis
-from lift.views import home_view, login
+from lift.views import home_view, login, register_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name=""),
+    path('register/', register_view, name="register"),
     path('home',home_view),
     path('bayi/',bayi_view),
     path('bayi/siparis', bayi_siparis),
@@ -34,7 +36,8 @@ urlpatterns = [
     path('bayi/siparis_detay', bayi_siparisdetay),
     path('bayi/siparis_ozeti', bayi_siparisozet),
     path('login/', lift.views.login, name='login'),
-    path('logout/', lift.views.logout, name='logout')
+    path('logout/', lift.views.logout, name='logout'),
+    path('singup/',lift.views.singup, name= 'singup')
 ]
 
 admin.site.site_title = "Liftistan Sistem Yöneticisi"

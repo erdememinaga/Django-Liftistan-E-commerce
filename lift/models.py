@@ -3,6 +3,7 @@ from django.db import models
 from django.db import models
 
 # Create your models here.
+from django.contrib.auth.models import User
 
 class Urun(models.Model):
     urun_adi = models.CharField(max_length=100,blank=True)

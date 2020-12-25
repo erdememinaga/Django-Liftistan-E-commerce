@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group, User
 # Create your views here.
-from bayi.models import Bayi_bilgi
+from bayi.models import bayi_bilgi
 
 
 def home_view(request):
@@ -40,10 +40,6 @@ def login(request):
         messages.info(request, 'Şifre veya kullanıcı adı yanlış')
         return HttpResponseRedirect("/")
 
-
-
-
-
 @login_required
 def logout(request):
     print('logged out')
@@ -69,7 +65,9 @@ def singup(request):
         if (password != password_check):
             messages.error(request, " Passwords do not match")
             return redirect('')
+        group = Group.objects.get(name="BayiGrubu")
         user = User.objects.create_user(username,email,password)
+        group.user_set.add(user)
         user.first_name = isim
         user.last_name = soyisim
         user.save()
@@ -77,6 +75,6 @@ def singup(request):
         # bilgiler = Bayi_bilgi(bayis = username, telefon = telefon , adres = adres)
         # bilgiler.save()
         messages.success(request, " Your iCoder has been successfully created")
-        return redirect('/bayi/')
+        return redirect('/bayi/profil_duzenle')
     else:
         return HttpResponseRedirect("/")

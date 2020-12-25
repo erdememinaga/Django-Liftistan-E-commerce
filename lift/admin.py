@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from lift.models import Urun,Siparis,Hammadde,Odeme,Recete,Bakim,models
+from lift.models import Urun,Siparis,Hammadde,Odeme,Recete,Bakim
 
 
 

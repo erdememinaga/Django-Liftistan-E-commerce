@@ -4,11 +4,13 @@ from django.db import models
 
 # Create your models here.
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
+
 
 class Urun(models.Model):
     urun_adi = models.CharField(max_length=100,blank=True)
     urun_aciklama = models.CharField(max_length=100,blank=True)
-    # urun_resim = models.ImageField()
+    urun_resim = models.ImageField(blank=True,upload_to='images/')
     model = models.CharField(max_length=100,blank=True)
     ebat = models.CharField(max_length=100,blank=True)
     fiyat = models.IntegerField()
@@ -19,6 +21,15 @@ class Urun(models.Model):
 
     def __str__(self):
         return self.urun_adi
+    def image_tag(self):
+        if self.urun_resim:
+                return mark_safe('<img src="{}" height="50"/>'.format(self.urun_resim.url))
+        else:
+                return ""
+    image_tag.short_description ='Resim'
+
+
+
 class Siparis(models.Model):
     bayi = models.ForeignKey('auth.User', verbose_name='bayi', on_delete=models.CASCADE, related_name='bayi',limit_choices_to={'groups__name': "BayiGrubu"})
     urun = models.ForeignKey(Urun, on_delete=models.CASCADE)
@@ -83,6 +94,16 @@ class Bakim(models.Model):
 
     def __str__(self):
         return self.islem_turu
+
+class Images(models.Model):
+
+    urunler= models.ForeignKey(Urun,on_delete=models.CASCADE)
+    baslik=models.CharField(max_length=50,blank=True)
+    resim = models.ImageField(blank=True, upload_to='images/')
+
+    def __str__(self):
+        return self.baslik
+
 
 
 

@@ -12,41 +12,40 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
+
 import lift
 from django.contrib import admin
 from django.urls import path, include
-
 
 from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
     bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns
 from lift.views import home_view, login, register_view
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name=""),
     path('register/', register_view, name="register"),
-    path('home',home_view),
-    path('bayi/',bayi_view), #özet
-    path('bayi/siparis', bayi_siparis),#siparişlerim
+    path('home', home_view),
+    path('bayi/', bayi_view),  # özet
+    path('bayi/siparis', bayi_siparis),  # siparişlerim
     path('bayi/bayi_listesi', bayi_bayilist),
-    path('bayi/urun_siparis', bayi_urunsiparis), #sepet sayfası
-    path('bayi/profil_duzenle', bayi_profil_duzenle),#profil düzenleme
+    path('bayi/urun_siparis', bayi_urunsiparis),  # sepet sayfası
+    path('bayi/profil_duzenle', bayi_profil_duzenle),  # profil düzenleme
     path('bayi/urunler', bayi_uruns),  # ürünlerim
-    path('bayi/urunlerim', bayi_urunler),#ürünlerim
-    path('bayi/bayi_detay', bayi_bayidetay),#profil
-    path('bayi/siparis_detay', bayi_siparisdetay),#sipariş detayları
+    path('bayi/urunlerim', bayi_urunler),  # ürünlerim
+    path('bayi/bayi_detay', bayi_bayidetay),  # profil
+    path('bayi/siparis_detay', bayi_siparisdetay),  # sipariş detayları
     path('bayi/siparis_ozeti', bayi_siparisozet),
     path('login/', lift.views.login, name='login'),
     path('logout/', lift.views.logout, name='logout'),
-    path('singup/',lift.views.singup, name= 'singup')
+    path('singup/', lift.views.singup, name='singup')
 ]
 
 admin.site.site_title = "Liftistan Sistem Yöneticisi"
 admin.site.site_header = "Liftistan Admin Paneli"
 admin.site.index_title = "Liftistan Admin Paneline Hoşgeldiniz"
 
-
-
-
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

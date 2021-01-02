@@ -36,35 +36,32 @@
                                             <img src="img/placeholders/avatars/avatar4@2x.jpg" alt="avatar" class="img-circle">
                                         </a>
                                         <h3>
-                                            <strong>Jonathan Taylor</strong><br><small></small>
+                                            <strong>{{user.username}}</strong><br><small></small>
                                         </h3>
                                     </div>
                                     <table class="table table-borderless table-striped table-vcenter">
                                         <tbody>
                                             <tr>
-                                                <td class="text-right" style="width: 50%;"><strong>Social Title</strong></td>
-                                                <td>Mr.</td>
+                                                <td class="text-right" style="width: 50%;"><strong>İsim</strong></td>
+                                                <td>{{ user.first_name }}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right"><strong>Birthdate</strong></td>
-                                                <td>November 20, 1984</td>
+                                                <td class="text-right"><strong>Soyad</strong></td>
+                                                <td>{{ user.last_name}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right"><strong>Registration</strong></td>
-                                                <td>15/10/2014 - 12:25</td>
+                                                <td class="text-right"><strong>Son Giriş</strong></td>
+                                                <td>{{ user.last_login }}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right"><strong>Last Visit</strong></td>
-                                                <td>06/11/2014 - 09:41</td>
+                                                <td class="text-right"><strong>Katılma Tarihi</strong></td>
+                                                <td>{{ user.date_joined }}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right"><strong>Language</strong></td>
-                                                <td>English (UK)</td>
+                                                <td class="text-right"><strong>Mail</strong></td>
+                                                <td>{{ user.email }}</td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-right"><strong>Registrations</strong></td>
-                                                <td><span class="label label-primary">Newsletter</span></td>
-                                            </tr>
+
                                             <tr>
                                                 <td class="text-right"><strong>Status</strong></td>
                                                 <td><span class="label label-success"><i class="fa fa-check"></i> Active</span></td>
@@ -90,7 +87,7 @@
                                                 <i class="fa fa-truck"></i>
                                             </div>
                                             <h4 class="text-left">
-                                                <strong>4</strong><br><small>Orders in Total</small>
+                                                <strong>4</strong><br><small>Satış Toplamı</small>
                                             </h4>
                                         </div>
                                     </a>
@@ -100,7 +97,7 @@
                                                 <i class="fa fa-usd"></i>
                                             </div>
                                             <h4 class="text-left text-success">
-                                                <strong>$ 2.125,00</strong><br><small>Orders Value</small>
+                                                <strong>$ 2.125,00</strong><br><small>Satış Geliri</small>
                                             </h4>
                                         </div>
                                     </a>
@@ -110,40 +107,12 @@
                                                 <i class="fa fa-shopping-cart"></i>
                                             </div>
                                             <h4 class="text-left text-warning">
-                                                <strong>3</strong> ($ 517,00)<br><small>Products in Cart</small>
+                                                <strong>3</strong> ($ 517,00)<br><small>Alış Gideri</small>
                                             </h4>
                                         </div>
                                     </a>
-                                    <a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
-                                        <div class="widget-simple">
-                                            <div class="widget-icon pull-right themed-background-info">
-                                                <i class="fa fa-group"></i>
-                                            </div>
-                                            <h4 class="text-left text-info">
-                                                <strong>2</strong><br><small>Referred Members</small>
-                                            </h4>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
-                                        <div class="widget-simple">
-                                            <div class="widget-icon pull-right themed-background-danger">
-                                                <i class="fa fa-heart"></i>
-                                            </div>
-                                            <h4 class="text-left text-danger">
-                                                <strong>15</strong><br><small>Favorite Products</small>
-                                            </h4>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)" class="widget widget-hover-effect2 themed-background-muted-light">
-                                        <div class="widget-simple">
-                                            <div class="widget-icon pull-right themed-background-muted">
-                                                <i class="fa fa-ticket"></i>
-                                            </div>
-                                            <h4 class="text-left text-muted">
-                                                <strong>2</strong><br><small>Tickets</small>
-                                            </h4>
-                                        </div>
-                                    </a>
+
+
                                     <!-- END Quick Stats Content -->
                                 </div>
                                 <!-- END Quick Stats Block -->
@@ -156,7 +125,7 @@
                                         <div class="block-options pull-right">
                                             <span class="label label-success"><strong>$ 2125,00</strong></span>
                                         </div>
-                                        <h2><i class="fa fa-truck"></i> <strong>Siparişler</strong> (4)</h2>
+                                        <h2><i class="fa fa-truck"></i> <strong>Müşterilerden Gelen Siparişler</strong> (4)</h2>
                                     </div>
                                     <!-- END Orders Title -->
 
@@ -164,12 +133,12 @@
                                     <table class="table table-bordered table-striped table-vcenter">
                                         <tbody>
                                             <tr>
-                                                <td class="text-center" style="width: 100px;"><a href="page_ecom_order_view.html"><strong>ORD.685199</strong></a></td>
-                                                <td class="hidden-xs" style="width: 15%;"><a href="javascript:void(0)">5 Products</a></td>
-                                                <td class="text-right hidden-xs" style="width: 10%;"><strong>$585,00</strong></td>
-                                                <td><span class="label label-warning">Processing</span></td>
-                                                <td class="hidden-xs">Paypal</td>
-                                                <td class="hidden-xs text-center">16/11/2014</td>
+                                                <td class="text-center" style="width: 100px;"><a href="page_ecom_order_view.html"><strong>Restfull</strong></a></td>
+                                                <td class="hidden-xs" style="width: 15%;"><a href="javascript:void(0)">Api'den</a></td>
+                                                <td class="text-right hidden-xs" style="width: 10%;"><strong>Gelen </strong></td>
+                                                <td><span class="label label-warning">Müşteriler</span></td>
+                                                <td class="hidden-xs">burada</td>
+                                                <td class="hidden-xs text-center">listelenecek</td>
                                                 <td class="text-center" style="width: 70px;">
                                                     <div class="btn-group btn-group-xs">
                                                         <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
@@ -177,48 +146,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685198</strong></a></td>
-                                                <td class="hidden-xs"><a href="javascript:void(0)">2 Products</a></td>
-                                                <td class="text-right hidden-xs"><strong>$958,00</strong></td>
-                                                <td><span class="label label-info">For delivery</span></td>
-                                                <td class="hidden-xs">Credit Card</td>
-                                                <td class="hidden-xs text-center">03/10/2014</td>
-                                                <td class="text-center">
-                                                    <div class="btn-group btn-group-xs">
-                                                        <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                        <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685197</strong></a></td>
-                                                <td class="hidden-xs"><a href="javascript:void(0)">3 Products</a></td>
-                                                <td class="text-right hidden-xs"><strong>$318,00</strong></td>
-                                                <td><span class="label label-success">Delivered</span></td>
-                                                <td class="hidden-xs">Bank Wire</td>
-                                                <td class="hidden-xs text-center">17/06/2014</td>
-                                                <td class="text-center">
-                                                    <div class="btn-group btn-group-xs">
-                                                        <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                        <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685196</strong></a></td>
-                                                <td class="hidden-xs"><a href="javascript:void(0)">6 Products</a></td>
-                                                <td class="text-right hidden-xs"><strong>$264,00</strong></td>
-                                                <td><span class="label label-success">Delivered</span></td>
-                                                <td class="hidden-xs">Paypal</td>
-                                                <td class="hidden-xs text-center">27/01/2014</td>
-                                                <td class="text-center">
-                                                    <div class="btn-group btn-group-xs">
-                                                        <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                        <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                     <!-- END Orders Content -->
@@ -233,56 +161,36 @@
                                 <div class="block">
                                     <!-- Customer Addresses Title -->
                                     <div class="block-title">
-                                        <h2><i class="fa fa-building-o"></i> <strong>Customer</strong> Addresses (2)</h2>
+                                        <h2><i class="fa fa-building-o"></i> <strong>Adreslerim</strong> </h2>
                                     </div>
                                     <!-- END Customer Addresses Title -->
 
                                     <!-- Customer Addresses Content -->
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <!-- Billing Address Block -->
                                             <div class="block">
                                                 <!-- Billing Address Title -->
                                                 <div class="block-title">
-                                                    <h2>Billing Address</h2>
+                                                        <h2>Bayi Adresi</h2>
                                                 </div>
                                                 <!-- END Billing Address Title -->
 
-                                                <!-- Billing Address Content -->
-                                                <h4><strong>Jonathan Taylor</strong></h4>
+                                                {% for bayi in bayiler %}
+                                                   {% if user == bayi.bayis %}
+                                                <h4><strong>Bayi Adresi</strong></h4>
                                                 <address>
-                                                    Sunset Str 620<br>
-                                                    Melbourne<br>
-                                                    Australia, 21-842<br><br>
-                                                    <i class="fa fa-phone"></i> (999) 852-11111<br>
-                                                    <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">johnathan.taylor@example.com</a>
+                                                    {{bayi.adres}}<br>
+                                                    <i class="fa fa-phone"></i> {{ bayi.telefon }}<br>
+                                                    <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">{{ user.email }}</a>
                                                 </address>
-                                                <!-- END Billing Address Content -->
+                                              <!-- END Billing Address Content -->
+                                               {% endif %}
+                                                {% endfor %}
                                             </div>
                                             <!-- END Billing Address Block -->
                                         </div>
-                                        <div class="col-lg-6">
-                                            <!-- Shipping Address Block -->
-                                            <div class="block">
-                                                <!-- Shipping Address Title -->
-                                                <div class="block-title">
-                                                    <h2>Shipping Address</h2>
-                                                </div>
-                                                <!-- END Shipping Address Title -->
 
-                                                <!-- Shipping Address Content -->
-                                                <h4><strong>Harry Burke</strong></h4>
-                                                <address>
-                                                    Sunset Str 598<br>
-                                                    Melbourne<br>
-                                                    Australia, 21-852<br><br>
-                                                    <i class="fa fa-phone"></i> (999) 852-22222<br>
-                                                    <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">harry.burke@example.com</a>
-                                                </address>
-                                                <!-- END Shipping Address Content -->
-                                            </div>
-                                            <!-- END Shipping Address Block -->
-                                        </div>
                                     </div>
                                     <!-- END Customer Addresses Content -->
                                 </div>

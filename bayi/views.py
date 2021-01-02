@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+from bayi.models import bayi_bilgi
+
+
 def bayi_bayilist(request):
     return render(request,'bayi/bayi_listesi.html', {})
 def bayi_urunsiparis(request):
@@ -11,13 +14,16 @@ def bayi_urunler(request):
 def bayi_uruns(request):
     return render(request,'bayi/uruns.html',{})
 def bayi_bayidetay(request):
-    return render(request,'bayi/bayi_detay.html',{})
+    bayiler = bayi_bilgi.objects.all()
+    return render(request,'bayi/bayi_detay.html',{'bayiler' : bayiler,})
 def bayi_siparisdetay(request):
     return render(request,'bayi/siparis_detay.html', {})
 def bayi_profilduzenle(request):
     return render(request,'bayi/profil_duzenle.html', {})
 def bayi_siparis(request):
     return render(request,'bayi/siparis.html',{})
+def bayi_bakim(request):
+    return render(request,'bayi/bakim.html',{})
 def bayi_urunekle(request):
     return render(request,'bayi/urun_ekle.html', {})
 def bayi_siparisozet(request):

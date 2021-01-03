@@ -24,7 +24,7 @@ def login(request):
 
                 if user in users_in_group:
                     auth.login(request,user)
-                    return redirect('/bayi/')
+                    return redirect('/bayi/bayi_detay')
                 else:
                     auth.login(request,user)
                     return redirect('/admin/')

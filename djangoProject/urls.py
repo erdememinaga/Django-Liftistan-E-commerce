@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
-    bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns
+    bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns, bayi_bakim
 from lift.views import home_view, login, register_view
 
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
     path('', home_view, name=""),
     path('register/', register_view, name="register"),
     path('home', home_view),
-    path('bayi/', bayi_view),  # özet
+    path('bayi/bakim', bayi_bakim),  # özet
     path('bayi/siparis', bayi_siparis),  # siparişlerim
     path('bayi/bayi_listesi', bayi_bayilist),
     path('bayi/urun_siparis', bayi_urunsiparis),  # sepet sayfası

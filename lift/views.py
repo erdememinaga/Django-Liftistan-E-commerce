@@ -6,7 +6,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group, User
 # Create your views here.
+from django.utils import timezone
+
 from bayi.models import bayi_bilgi
+from lift.models import Siparis
 
 
 def home_view(request):
@@ -94,3 +97,23 @@ def success(request):
     email.fail_slienty = False
     email.send()
     return render(request,'bayi/siparis_detay.html')
+
+
+@login_required()
+def sepete_ekle(request):
+    if  request.method == 'POST':
+        urun = request.POST[ "urun" ]
+        siparis_adet = request.POST["adet"]
+        status = 0
+        id = request.user.id
+        urunler = Siparis(bayi_id =id ,urun_id = urun, status= status, adet= siparis_adet,tarih = timezone.now())
+        urunler.save()
+        messages.success(request, " Sepete Eklendi")
+        return redirect('/bayi/urunler')
+    else:
+        return HttpResponseRedirect("/")
+def delete(request,id):
+    print("silindi")
+    getir = Siparis.objects.filter(id = id)
+    getir.delete()
+    return redirect('/bayi/urunler')

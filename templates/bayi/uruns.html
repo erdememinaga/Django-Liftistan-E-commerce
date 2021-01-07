@@ -38,15 +38,24 @@
                                                     </h3>
                                                 </div>
 
-                                                <div class="widget-main">
-                                                    <center><h2>{{ urun.urun_adi }}</h2></center>
+                                               <div class="widget-main">
+      <center>
+        <h2>{{ urun.urun_adi }}</h2>
+          <h4>{{urun.fiyat}} TL</h4>
+      </center>
+      <form method="POST" action="{% url 'sepete_ekle' %}">
+                              {% csrf_token %}
 
-                                                    </a>
-                                                    <a href="page_ready_elearning_course_lessons.html" class="btn btn-sm btn-default pull-right">
-                                                        Sepete Ekle
-                                                    </a>
-                                                    <a href="page_ready_elearning_course_lessons.html" class="btn btn-sm btn-success">{{urun.fiyat}} TL</a>
-                                                </div>
+        <input type="hidden" value="{{ urun.id }}" name="urun" />
+        <input
+          type="submit"
+          value="sepete ekle"
+          class="btn btn-sm btn-default pull-right"
+        />
+            <input type="number" name="adet" id="points" class="btn btn-sm btn-success" name="points" step="1" placeholder="1">
+
+      </form>
+    </div>
                                                 <!-- END Widget Main -->
                                             </div>
                                         </div>

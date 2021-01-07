@@ -66,19 +66,30 @@
                             <!-- Chat -->
                             <!-- Chat demo functionality initialized in js/app.js -> chatUi() -->
                             <a href="page_ready_chat.html" class="sidebar-title">
-                                <i class="gi gi-comments pull-right"></i> <strong>Sepetim</strong>
+                                <i class="gi gi-comments pull-right"></i> <strong>{{ user.username }} Sepeti</strong>
                             </a>
                             <!-- Chat Users -->
+                            {% for siparis in siparis %}
+                          {% for urun in urunler %}
+
+
+                              {% if siparis.bayi_id == user.id %}
+                                  {% if siparis.urun_id == urun.id %}
                             <ul class="sepet" style="padding: 0">
                                 <br>
-                                <center><img src="https://www.gazetedamga.com.tr/images/album/tuanasuakn_41705520_2015508362073549_929199982581586951_n.jpg" width="100" height="50"></center>
+                                <center><img src="{{ urun.urun_resim.url }}" width="100" height="50"></center>
 
-  <li class="list-group-item list-group-item-success">This is a success list group item</li>
-                              <center>  <button type="button" class="btn btn-danger">Sil</button></center>
+  <li class="list-group-item list-group-item-success">{{ urun.urun_adi }}</li>
+                                <a href ="{% url 'delete' siparis.id %}" >sil</a>
 
 
 
                             </ul>
+                                {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+
 <center><button type="button" class="btn btn-info" onclick="window.location.href='../success/'">Ödeme yap</button></center>
 
                         </div>
@@ -219,7 +230,7 @@
                                 <!-- If you do not want the main sidebar to open when the alternative sidebar is closed, just remove the second parameter: App.sidebar('toggle-sidebar-alt'); -->
                                 <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt', 'toggle-other');this.blur();">
                                     <i class="fa fa-shopping-basket"></i>
-                                    <span class="label label-primary label-indicator animation-floating">4</span>
+                                    <span class="label label-primary label-indicator animation-floating"></span>
                                 </a>
                             </li>
                             <!-- END Alternative Sidebar Toggle Button -->

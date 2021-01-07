@@ -2,7 +2,7 @@ import lift
 from django.shortcuts import render
 
 from bayi.models import bayi_bilgi
-from lift.models import Urun
+from lift.models import Urun, Siparis
 
 
 def bayi_bayilist(request):
@@ -16,7 +16,8 @@ def bayi_urunler(request):
     return render(request,'bayi/urunler.html',{'urunler' : urunler,})
 def bayi_uruns(request):
     urunler = Urun.objects.all()
-    return render(request,'bayi/uruns.html', {'urunler' : urunler,})
+    siparis = Siparis.objects.all()
+    return render(request,'bayi/uruns.html', {'siparis' : siparis, 'urunler': urunler,})
 def bayi_bayidetay(request):
     bayiler = bayi_bilgi.objects.all()
     return render(request,'bayi/bayi_detay.html',{'bayiler' : bayiler,})
@@ -35,4 +36,7 @@ def bayi_siparisozet(request):
     return render(request,'bayi/siparis_ozet.html', {})
 def bayi_profil_duzenle(request):
     return render(request,'bayi/profil_duzenle.html', {})
-
+def base(request):
+    siparis = Siparis.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/base.html', {'siparis' : siparis, 'urunler': urunler,})

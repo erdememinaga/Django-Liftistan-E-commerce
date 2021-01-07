@@ -35,6 +35,7 @@ class Siparis(models.Model):
     urun = models.ForeignKey(Urun, on_delete=models.CASCADE)
     adet = models.IntegerField()
     tarih = models.DateTimeField()
+    status = models.BooleanField()
 
     class Meta:
         verbose_name = 'Bayi Sipariş'

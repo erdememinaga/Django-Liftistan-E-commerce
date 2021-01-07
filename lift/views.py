@@ -84,12 +84,13 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 def success(request):
-    template = render_to_string('bayi/email.html',{'name':request.user.profile.first_name})
+    template = render_to_string('bayi/email.html',{'name':request.user.username})
     email = EmailMessage(
-        'subject',
+        'Ürün Satın Alınmıştır',
         template,
         settings.EMAIL_HOST_USER,
-        [request.user.profile.email],
+        [request.user.email],
         )
-    email.fail.slienty = False
+    email.fail_slienty = False
     email.send()
+    return render(request,'bayi/siparis_detay.html')

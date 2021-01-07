@@ -40,7 +40,8 @@ urlpatterns = [
     path('bayi/siparis_ozeti', bayi_siparisozet),
     path('login/', lift.views.login, name='login'),
     path('logout/', lift.views.logout, name='logout'),
-    path('singup/', lift.views.singup, name='singup')
+    path('singup/', lift.views.singup, name='singup'),
+    path('success/',lift.views.success, name='success'),
 ]
 
 admin.site.site_title = "Liftistan Sistem Yöneticisi"

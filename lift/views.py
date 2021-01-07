@@ -78,3 +78,18 @@ def singup(request):
         return redirect('/bayi/profil_duzenle')
     else:
         return HttpResponseRedirect("/")
+
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+
+def success(request):
+    template = render_to_string('bayi/email.html',{'name':request.user.profile.first_name})
+    email = EmailMessage(
+        'subject',
+        template,
+        settings.EMAIL_HOST_USER,
+        [request.user.profile.email],
+        )
+    email.fail.slienty = False
+    email.send()

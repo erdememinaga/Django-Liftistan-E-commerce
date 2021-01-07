@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
-    bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns, bayi_bakim
+    bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns, bayi_bakim, bayi_profilduzenle
 from lift.views import home_view, login, register_view
 
 urlpatterns = [
@@ -32,7 +32,7 @@ urlpatterns = [
     path('bayi/siparis', bayi_siparis),  # siparişlerim
     path('bayi/bayi_listesi', bayi_bayilist),
     path('bayi/urun_siparis', bayi_urunsiparis),  # sepet sayfası
-    path('bayi/profil_duzenle', bayi_profil_duzenle),  # profil düzenleme
+    path('bayi/profil_duzenle', bayi_profilduzenle),  # profil düzenleme
     path('bayi/urunler', bayi_uruns),  # ürünlerim
     path('bayi/urunlerim', bayi_urunler),  # ürünlerim
     path('bayi/bayi_detay', bayi_bayidetay),  # profil
@@ -42,6 +42,10 @@ urlpatterns = [
     path('logout/', lift.views.logout, name='logout'),
     path('singup/', lift.views.singup, name='singup'),
     path('success/',lift.views.success, name='success'),
+    path('profilduzen/<bayis_id>',lift.views.profilduzen,name='profilduzen'),
+
+    path('sepete_ekle/', lift.views.sepete_ekle, name='sepete_ekle'),
+    path('delete/<id>',lift.views.delete,name='delete')
 ]
 
 admin.site.site_title = "Liftistan Sistem Yöneticisi"

@@ -6,6 +6,7 @@
 <div id="page-content" style="min-height: 1119px;">
 
                         <!-- Clickable Wizard Block -->
+
                         <div class="block">
                             <!-- Clickable Wizard Title -->
                             <div class="block-title">
@@ -14,8 +15,13 @@
                             <!-- END Clickable Wizard Title -->
 
                             <!-- Clickable Wizard Content -->
-                            <form id="clickable-wizard" action="page_forms_wizard.html" method="post" class="form-horizontal form-bordered ui-formwizard">
-                                <!-- First Step -->
+                             {% for bayiler in bayiler %}
+                                        {% if user.id == bayiler.bayis_id %}
+                            <form id="clickable-wizard" action="{% url 'profilduzen' bayiler.bayis_id %}" method="post" class="form-horizontal form-bordered ui-formwizard">
+                                {% csrf_token %}<!-- First Step -->
+
+
+
                                 <div id="clickable-first" class="step ui-formwizard-content" style="display: block;">
                                     <!-- Step Info -->
                                     <div class="form-group">
@@ -27,49 +33,41 @@
                                         </div>
                                     </div>
                                     <!-- END Step Info -->
+
+
+
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="example-clickable-username">Username</label>
+
+                                        <label class="col-md-4 control-label" for="example-clickable-username">Bayi Adı </label>
                                         <div class="col-md-5">
-                                            <input type="text" id="example-clickable-username" name="example-clickable-username" class="form-control ui-wizard-content" placeholder="Your username..">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="example-clickable-username">Username</label>
-                                        <div class="col-md-5">
-                                            <input type="text" id="example-clickable-username" name="example-clickable-username" class="form-control ui-wizard-content" placeholder="Your username..">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="example-clickable-username">Username</label>
-                                        <div class="col-md-5">
-                                            <input type="text" id="example-clickable-username" name="example-clickable-username" class="form-control ui-wizard-content" placeholder="Your username..">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="example-clickable-username">Adres</label>
-                                        <div class="col-md-5">
-                                            <input type="text" id="example-clickable-username" name="example-clickable-username" class="form-control ui-wizard-content" placeholder="Your username..">
+                                            <input type="text" id="example-clickable-username" name="ample-clickable-usernameex" class="form-control ui-wizard-content" placeholder=" {{ user.username }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="example-clickable-email">Email</label>
                                         <div class="col-md-5">
-                                            <input type="text" id="example-clickable-email" name="example-clickable-email" class="form-control ui-wizard-content" placeholder="test@example.com">
+                                            <input type="text" id="example-clickable-email" name="example-clickable-email" class="form-control ui-wizard-content" placeholder="{{ user.email }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="example-clickable-password">Password</label>
+                                        <label class="col-md-4 control-label" for="example-clickable-username">Adres</label>
                                         <div class="col-md-5">
-                                            <input type="password" id="example-clickable-password" name="example-clickable-password" class="form-control ui-wizard-content" placeholder="Choose a crazy one..">
+                                            <input type="text" id="example-clickable-username" name="adres" class="form-control ui-wizard-content" placeholder="{{ bayiler.adres }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="example-clickable-password2">Confirm Password</label>
+                                        <label class="col-md-4 control-label" for="example-clickable-username">Telefon</label>
                                         <div class="col-md-5">
-                                            <input type="password" id="example-clickable-password2" name="example-clickable-password2" class="form-control ui-wizard-content" placeholder="..and confirm it!">
+                                            <input type="text" id="example-clickable-username" name="telefon" class="form-control ui-wizard-content" placeholder="{{ bayiler.telefon }}">
                                         </div>
                                     </div>
+
                                 </div>
+
+
+
+
+
                                 <!-- END First Step -->
 
                                 <!-- Second Step -->
@@ -161,6 +159,8 @@
                                 </div>
                                 <!-- END Form Buttons -->
                             </form>
+                             {% endif %}
+                                {% endfor %}
                             <!-- END Clickable Wizard Content -->
                         </div>
                         <!-- END Clickable Wizard Block -->

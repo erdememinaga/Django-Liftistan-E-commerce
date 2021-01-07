@@ -6,7 +6,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group, User
 # Create your views here.
+from django.utils import timezone
+
 from bayi.models import bayi_bilgi
+from lift.models import Siparis
 
 
 def home_view(request):
@@ -72,8 +75,8 @@ def singup(request):
         user.last_name = soyisim
         user.save()
         auth.login(request,user)
-        # bilgiler = Bayi_bilgi(bayis = username, telefon = telefon , adres = adres)
-        # bilgiler.save()
+        bilgiler = bayi_bilgi(bayis_id=user.id, telefon=isim, adres=soyisim)
+        bilgiler.save()
         messages.success(request, " Your iCoder has been successfully created")
         return redirect('/bayi/profil_duzenle')
     else:
@@ -94,3 +97,33 @@ def success(request):
     email.fail_slienty = False
     email.send()
     return render(request,'bayi/siparis_detay.html')
+
+
+@login_required()
+def sepete_ekle(request):
+    if  request.method == 'POST':
+        urun = request.POST[ "urun" ]
+        siparis_adet = request.POST["adet"]
+        status = 0
+        id = request.user.id
+        urunler = Siparis(bayi_id =id ,urun_id = urun, status= status, adet= siparis_adet,tarih = timezone.now())
+        urunler.save()
+        messages.success(request, " Sepete Eklendi")
+        return redirect('/bayi/urunler')
+    else:
+        return HttpResponseRedirect("/")
+def delete(request,id):
+    print("silindi")
+    getir = Siparis.objects.filter(id = id)
+    getir.delete()
+    return redirect('/bayi/urunler')
+
+def profilduzen(request,bayis_id):
+    if request.method == "POST":
+        id = request.user.id
+        telefon = request.POST["telefon"]
+        adres = request.POST["adres"]
+        getir=bayi_bilgi.objects.filter(bayis_id=id)
+        getir.update(telefon=telefon,adres=adres)
+
+        return redirect('../bayi/profil_duzenle')

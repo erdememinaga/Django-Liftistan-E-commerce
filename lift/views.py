@@ -116,6 +116,7 @@ def delete(request,id):
     print("silindi")
     getir = Siparis.objects.filter(id = id)
     getir.delete()
+<<<<<<< HEAD
     return redirect('/bayi/urunler')
 
 def profilduzen(request,bayis_id):
@@ -127,3 +128,6 @@ def profilduzen(request,bayis_id):
         getir.update(telefon=telefon,adres=adres)
 
         return redirect('../bayi/profil_duzenle')
+=======
+    return redirect('/bayi/urunler')
+>>>>>>> f8636363c193e282698a94c3af20d66af06512a9

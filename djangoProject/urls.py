@@ -42,7 +42,10 @@ urlpatterns = [
     path('logout/', lift.views.logout, name='logout'),
     path('singup/', lift.views.singup, name='singup'),
     path('success/',lift.views.success, name='success'),
+<<<<<<< HEAD
     path('profilduzen/<bayis_id>',lift.views.profilduzen,name='profilduzen'),
+=======
+>>>>>>> f8636363c193e282698a94c3af20d66af06512a9
 
     path('sepete_ekle/', lift.views.sepete_ekle, name='sepete_ekle'),
     path('delete/<id>',lift.views.delete,name='delete')

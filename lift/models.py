@@ -37,6 +37,14 @@ class Siparis(models.Model):
     tarih = models.DateTimeField()
     status = models.BooleanField()
 
+    @property
+    def miktar(self):
+        return (self.adet * self.urun.fiyat)
+
+    @property
+    def fiyat(self):
+        return self.urun.fiyat
+
     class Meta:
         verbose_name = 'Bayi Sipariş'
         verbose_name_plural = 'Bayi Siparişleri'

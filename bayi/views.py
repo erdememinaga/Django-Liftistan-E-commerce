@@ -22,7 +22,10 @@ def bayi_bayidetay(request):
     bayiler = bayi_bilgi.objects.all()
     return render(request,'bayi/bayi_detay.html',{'bayiler' : bayiler,})
 def bayi_siparisdetay(request):
-    return render(request,'bayi/siparis_detay.html', {})
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/siparis_detay.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
 def bayi_profilduzenle(request):
     bayiler = bayi_bilgi.objects.all()
     return render(request, 'bayi/profil_duzenle.html', {'bayiler': bayiler, })

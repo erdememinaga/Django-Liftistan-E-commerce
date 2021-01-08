@@ -36,16 +36,16 @@ urlpatterns = [
     path('bayi/urunler', bayi_uruns),  # ürünlerim
     path('bayi/urunlerim', bayi_urunler),  # ürünlerim
     path('bayi/bayi_detay', bayi_bayidetay),  # profil
-    path('bayi/siparis_detay', bayi_siparisdetay),  # sipariş detayları
+    path('siparis_detay/', bayi_siparisdetay),  # sipariş detayları
     path('bayi/siparis_ozeti', bayi_siparisozet),
     path('login/', lift.views.login, name='login'),
     path('logout/', lift.views.logout, name='logout'),
     path('singup/', lift.views.singup, name='singup'),
     path('success/',lift.views.success, name='success'),
-<<<<<<< HEAD
+
     path('profilduzen/<bayis_id>',lift.views.profilduzen,name='profilduzen'),
-=======
->>>>>>> f8636363c193e282698a94c3af20d66af06512a9
+
+
 
     path('sepete_ekle/', lift.views.sepete_ekle, name='sepete_ekle'),
     path('delete/<id>',lift.views.delete,name='delete')

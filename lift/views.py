@@ -86,7 +86,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 
-def success(request):
+def success(request,iid):
     template = render_to_string('bayi/email.html',{'name':request.user.username})
     email = EmailMessage(
         'Ürün Satın Alınmıştır',
@@ -96,7 +96,11 @@ def success(request):
         )
     email.fail_slienty = False
     email.send()
+    id = request.user.id
+    siparis = Siparis.objects.filter(bayi_id=id)
+    siparis.update(STATUS =2)
     return render(request,'bayi/siparis_detay.html')
+
 
 
 @login_required()
@@ -106,7 +110,7 @@ def sepete_ekle(request):
         siparis_adet = request.POST["adet"]
         status = 0
         id = request.user.id
-        urunler = Siparis(bayi_id =id ,urun_id = urun, status= status, adet= siparis_adet,tarih = timezone.now())
+        urunler = Siparis(bayi_id =id ,urun_id = urun, STATUS= status, adet= siparis_adet,tarih = timezone.now())
         urunler.save()
         messages.success(request, " Sepete Eklendi")
         return redirect('/bayi/urunler')

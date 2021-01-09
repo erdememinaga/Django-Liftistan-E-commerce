@@ -18,8 +18,9 @@ class UrunlerAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
 
 class SiparisAdmin(admin.ModelAdmin):
-    list_display = ('bayi','urun','adet','tarih') # gösterilecek olan parametreler
+    list_display = ('bayi','urun','adet','tarih','STATUS',) # gösterilecek olan parametreler
     list_filter = ('urun',) #durumuna göre sıralama
+    readonly_fields = ('bayi','urun','adet','tarih',)
     search_fields = ('bayi',) #arama
 
 

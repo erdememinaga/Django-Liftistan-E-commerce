@@ -36,7 +36,7 @@ urlpatterns = [
     path('bayi/urunler', bayi_uruns),  # ürünlerim
     path('bayi/urunlerim', bayi_urunler),  # ürünlerim
     path('bayi/bayi_detay', bayi_bayidetay),  # profil
-    path('siparis_detay/', bayi_siparisdetay),  # sipariş detayları
+    path('bayi/siparis_detay', bayi_siparisdetay),  # sipariş detayları
     path('bayi/siparis_ozeti', bayi_siparisozet),
     path('login/', lift.views.login, name='login'),
     path('logout/', lift.views.logout, name='logout'),

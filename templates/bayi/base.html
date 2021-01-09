@@ -75,22 +75,24 @@
 
                               {% if siparis.bayi_id == user.id %}
                                   {% if siparis.urun_id == urun.id %}
+                                      {% if siparis.STATUS == '0' %}
                             <ul class="sepet" style="padding: 0">
                                 <br>
                                 <center><img src="{{ urun.urun_resim.url }}" width="100" height="50"></center>
 
-  <li class="list-group-item list-group-item-success">{{ urun.urun_adi }}</li>
+  <li class="list-group-item list-group-item-success">{{ urun.urun_adi }},{{ siparis.adet }}</li>
                                 <a href ="{% url 'delete' siparis.id %}" >sil</a>
 
 
 
                             </ul>
                                 {% endif %}
+                                      {% endif %}
                             {% endif %}
                             {% endfor %}
                             {% endfor %}
 
-<center><button type="button" class="btn btn-info" onclick="window.location.href='/siparis_detay/'">Ödeme yap</button>
+<center><button type="button" class="btn btn-info" onclick="window.location.href='../bayi/siparis_detay'">Ödeme yap</button>
 
                         </div>
                         <!-- END Sidebar Content -->

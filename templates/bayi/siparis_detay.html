@@ -119,14 +119,16 @@
                                         {% for urunler in urunler %}
                                                 {% if siparis.bayi_id == user.id %}
                                                  {% if siparis.urun_id == urunler.id %}
+                                                     {%  if siparis.STATUS == '0'%}
                                         <tr>
                                             <td class="text-center"><a href="page_ecom_product_edit.html"><strong>{{ siparis.id }}</strong></a></td>
                                             <td><a href="page_ecom_product_edit.html">{{urunler.urun_adi  }}</a></td>
                                             <td class="text-center"><strong>{{ siparis.adet }}</strong></td>
                                             <td class="text-center"><strong>{{  siparis.status  }}</strong></td>
                                             <td class="text-right"><strong>{{ urunler.fiyat }}</strong></td>
-                                            <td class="text-right"><strong>$399,00</strong></td>
+                                            <td class="text-right"><strong>{{ siparis.miktar }}</strong></td>
                                         </tr>
+                                                         {% endif %}
                                             {% endif %}
                                             {% endif %}
                                      {% endfor %}

@@ -31,11 +31,17 @@ class Urun(models.Model):
 
 
 class Siparis(models.Model):
+    STATUS=(
+        ('0','yeni'),
+        ('1','ödendi'),
+        ('2', 'hazırlanma'),
+        ('3', 'tamamlandı')
+    )
     bayi = models.ForeignKey('auth.User', verbose_name='bayi', on_delete=models.CASCADE, related_name='bayi',limit_choices_to={'groups__name': "BayiGrubu"})
     urun = models.ForeignKey(Urun, on_delete=models.CASCADE)
     adet = models.IntegerField()
     tarih = models.DateTimeField()
-    status = models.BooleanField()
+    STATUS = models.CharField(max_length=4,choices=STATUS)
 
     @property
     def miktar(self):

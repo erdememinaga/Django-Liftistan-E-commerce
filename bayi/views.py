@@ -1,3 +1,5 @@
+from django.db.models import Sum
+
 import lift
 from django.shortcuts import render
 
@@ -6,41 +8,71 @@ from lift.models import Urun, Siparis
 
 
 def bayi_bayilist(request):
-    return render(request,'bayi/bayi_listesi.html', {})
-def bayi_urunsiparis(request):
-    return render(request,'bayi/bayi_urun_siparis.html', {})
-def bayi_view(request):
-    return render(request,'bayi/index.html',{})
-def bayi_urunler(request):
-    urunler = Urun.objects.all()
-    return render(request,'bayi/urunler.html',{'urunler' : urunler,})
-def bayi_uruns(request):
-    urunler = Urun.objects.all()
     siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/bayi_listesi.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_urunsiparis(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/bayi_urun_siparis.html',{'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_view(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/index.html',{'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_urunler(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/urunler.html',{'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_uruns(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
     return render(request,'bayi/uruns.html', {'siparis' : siparis, 'urunler': urunler,})
 def bayi_bayidetay(request):
+
+    siparis = Siparis.objects.all()
+    urunler = Urun.objects.all()
     bayiler = bayi_bilgi.objects.all()
-    return render(request,'bayi/bayi_detay.html',{'bayiler' : bayiler,})
+
+    a = Siparis.objects.filter(bayi=request.user).aggregate(Sum("adet"))['adet__sum'] or 0.00
+    return render(request,'bayi/bayi_detay.html',{'bayiler':bayiler,'siparis':siparis,'urunler':urunler, 'a': a})
+
 def bayi_siparisdetay(request):
     siparis = Siparis.objects.all()
     bayiler = bayi_bilgi.objects.all()
     urunler = Urun.objects.all()
     return render(request,'bayi/siparis_detay.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
 def bayi_profilduzenle(request):
-    bayiler = bayi_bilgi.objects.all()
-    return render(request, 'bayi/profil_duzenle.html', {'bayiler': bayiler, })
-def bayi_siparis(request):
-    return render(request,'bayi/siparis.html',{})
-def bayi_bakim(request):
-    return render(request,'bayi/bakim.html',{})
-def bayi_urunekle(request):
-    urunler = Urun.objects.all()
-    return render(request,'bayi/urun_ekle.html', {'urunler' : urunler,})
-def bayi_siparisozet(request):
-    return render(request,'bayi/siparis_ozet.html', {})
-def bayi_profil_duzenle(request):
-    return render(request,'bayi/profil_duzenle.html', {})
-def base(request):
     siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
     urunler = Urun.objects.all()
-    return render(request,'bayi/base.html', {'siparis' : siparis, 'urunler': urunler,})
+    return render(request, 'bayi/profil_duzenle.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_siparis(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/siparis.html',{'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_bakim(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/bakim.html',{'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_urunekle(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/urun_ekle.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_siparisozet(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/siparis_ozet.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def bayi_profil_duzenle(request):
+    siparis = Siparis.objects.all()
+    bayiler = bayi_bilgi.objects.all()
+    urunler = Urun.objects.all()
+    return render(request,'bayi/profil_duzenle.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})

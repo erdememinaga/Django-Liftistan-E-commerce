@@ -72,19 +72,26 @@
                                         <th>İsim</th>
                                         <th class="text-right hidden-xs">Fiyat</th>
                                         <th class="hidden-xs">Durum</th>
-                                        <th class="hidden-xs text-center">Stok</th>
+                                        <th class="hidden-xs text-center">Adet</th>
+                                        <th class="hidden-xs text-center">Tarih</th>
                                         <th class="text-center">İşlem</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                 {% for siparis in siparis %}
+                                    {% for urunler in urunler %}
+                                        {% if siparis.bayi_id == user.id %}
+                                       {% if siparis.urun_id == urunler.id %}
+                                      {% if siparis.STATUS == '3' %}
                                     <tr>
-                                        <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8799</strong></a></td>
-                                        <td><a href="page_ecom_product_edit.html">Product #99</a></td>
-                                        <td class="text-right hidden-xs"><strong>$899,00</strong></td>
+                                        <td class="text-center"><a href="page_ecom_product_edit.html"><strong>{{ siparis.id }}</strong></a></td>
+                                        <td><a href="page_ecom_product_edit.html">{{ urunler.urun_adi }}</a></td>
+                                        <td class="text-right hidden-xs"><strong>{{siparis.miktar}}</strong></td>
                                         <td class="hidden-xs">
-                                            <span class="label label-success">Available (7)</span>
+                                            <span class="label label-success">{{ siparis.STATUS }}</span>
                                         </td>
-                                        <td class="hidden-xs text-center">03/10/2014</td>
+                                        <td class="hidden-xs text-center">{{ siparis.adet}}</td>
+                                        <td class="hidden-xs text-center">{{ siparis.tarih}}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-xs">
                                                 <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
@@ -92,22 +99,11 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-center"><a href="page_ecom_product_edit.html"><strong>PID.8798</strong></a></td>
-                                        <td><a href="page_ecom_product_edit.html">Product #98</a></td>
-                                        <td class="text-right hidden-xs"><strong>$1351,00</strong></td>
-                                        <td class="hidden-xs">
-                                            <span class="label label-success">Available (227)</span>
-                                        </td>
-                                        <td class="hidden-xs text-center">18/02/2014</td>
-                                        <td class="text-center">
-                                            <div class="btn-group btn-group-xs">
-                                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                              {% endif %}
+                              {% endif %}
+                              {% endif %}
+                                {% endfor %}
+                                 {% endfor %}
                                 </tbody>
                             </table>
                             <!-- END All Products Content -->

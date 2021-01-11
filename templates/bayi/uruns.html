@@ -43,7 +43,7 @@
         <h2>{{ urun.urun_adi }}</h2>
           <h4>{{urun.fiyat}} TL</h4>
       </center>
-      <form method="POST" action="{% url 'sepete_ekle' %}">
+      <form method="POST" action="{% url 'sepete_ekle'  %}">
                               {% csrf_token %}
 
         <input type="hidden" value="{{ urun.id }}" name="urun" />

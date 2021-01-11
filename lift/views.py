@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login as django_logout, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import Group, User
 # Create your views here.
 from django.utils import timezone
@@ -86,7 +86,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 
-def success(request,iid):
+def success(request):
     template = render_to_string('bayi/email.html',{'name':request.user.username})
     email = EmailMessage(
         'Ürün Satın Alınmıştır',
@@ -97,12 +97,13 @@ def success(request,iid):
     email.fail_slienty = False
     email.send()
     id = request.user.id
-    siparis = Siparis.objects.filter(bayi_id=id)
-    siparis.update(STATUS =2)
+    siparis = Siparis.objects.filter(bayi_id=id,STATUS=0)
+    siparis.update(STATUS =2,tarih=timezone.now())
     return render(request,'bayi/siparis_detay.html')
 
 
 
+@login_required()
 @login_required()
 def sepete_ekle(request):
     if  request.method == 'POST':
@@ -110,12 +111,21 @@ def sepete_ekle(request):
         siparis_adet = request.POST["adet"]
         status = 0
         id = request.user.id
-        urunler = Siparis(bayi_id =id ,urun_id = urun, STATUS= status, adet= siparis_adet,tarih = timezone.now())
-        urunler.save()
+        try:
+            a = Siparis.objects.filter(urun_id=urun,bayi_id=id)
+            b = get_object_or_404(Siparis, urun_id=urun,bayi_id=id)
+            a.update(adet=int(siparis_adet) + int(b.adet))
+        except:
+            urunler = Siparis(bayi_id=id, urun_id=urun, STATUS=status, adet=siparis_adet, tarih=timezone.now())
+            urunler.save()
+
+
+
         messages.success(request, " Sepete Eklendi")
         return redirect('/bayi/urunler')
     else:
         return HttpResponseRedirect("/")
+
 def delete(request,id):
     print("silindi")
     getir = Siparis.objects.filter(id = id)

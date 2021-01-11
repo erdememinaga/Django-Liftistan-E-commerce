@@ -68,13 +68,13 @@
                             <table id="ecom-products" class="table table-bordered table-striped table-vcenter">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 70px;">ID</th>
-                                        <th>İsim</th>
+
+                                        <th>Ürün Adı</th>
                                         <th class="text-right hidden-xs">Fiyat</th>
                                         <th class="hidden-xs">Durum</th>
                                         <th class="hidden-xs text-center">Adet</th>
                                         <th class="hidden-xs text-center">Tarih</th>
-                                        <th class="text-center">İşlem</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,22 +82,17 @@
                                     {% for urunler in urunler %}
                                         {% if siparis.bayi_id == user.id %}
                                        {% if siparis.urun_id == urunler.id %}
-                                      {% if siparis.STATUS == '3' %}
+                                      {% if siparis.STATUS != '0' %}
                                     <tr>
-                                        <td class="text-center"><a href="page_ecom_product_edit.html"><strong>{{ siparis.id }}</strong></a></td>
+
                                         <td><a href="page_ecom_product_edit.html">{{ urunler.urun_adi }}</a></td>
                                         <td class="text-right hidden-xs"><strong>{{siparis.miktar}}</strong></td>
                                         <td class="hidden-xs">
-                                            <span class="label label-success">{{ siparis.STATUS }}</span>
+                                            <span class="label label-success">{{ siparis.get_STATUS_display }}</span>
                                         </td>
                                         <td class="hidden-xs text-center">{{ siparis.adet}}</td>
                                         <td class="hidden-xs text-center">{{ siparis.tarih}}</td>
-                                        <td class="text-center">
-                                            <div class="btn-group btn-group-xs">
-                                                <a href="page_ecom_product_edit.html" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
-                                            </div>
-                                        </td>
+
                                     </tr>
                               {% endif %}
                               {% endif %}

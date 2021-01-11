@@ -56,47 +56,14 @@
                                               <!-- END eCommerce Order View Header -->
 
                         <!-- Order Status -->
-                        <div class="row text-center">
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <div class="widget-extra themed-background-success">
-                                        <h4 class="widget-content-light"><strong>ORD.685195</strong></h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 text-success animation-expandOpen">15/10/2014</span></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <div class="widget-extra themed-background-success">
-                                        <h4 class="widget-content-light"><i class="fa fa-paypal"></i> <strong>Payment</strong></h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"><i class="fa fa-check"></i></span></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <div class="widget-extra themed-background-warning">
-                                        <h4 class="widget-content-light"><i class="fa fa-archive"></i> <strong>Packaging</strong></h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 text-warning"><i class="fa fa-refresh fa-spin"></i></span></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <div class="widget-extra themed-background-muted">
-                                        <h4 class="widget-content-light"><i class="fa fa-truck"></i> <strong>Delivery</strong></h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 text-muted animation-pulse"><i class="fa fa-ellipsis-h"></i></span></div>
-                                </div>
-                            </div>
-                        </div>
+
                         <!-- END Order Status -->
 
                         <!-- Products Block -->
                         <div class="block">
                             <!-- Products Title -->
                             <div class="block-title">
-                                <h2><i class="fa fa-shopping-cart"></i> <strong>Products</strong></h2>
+                                <h2><i class="fa fa-shopping-cart"></i> <strong>Ürünler</strong></h2>
                             </div>
                             <!-- END Products Title -->
 
@@ -107,7 +74,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center" style="width: 100px;">ID</th>
-                                            <th>Product Name</th>
+                                            <th>Ürün Adı</th>
                                             <th class="text-center">Adet</th>
                                             <th class="text-center">Durum</th>
                                             <th class="text-right" style="width: 10%;">BİRİM FİYATI</th>
@@ -136,18 +103,11 @@
 
 
 
-                                        <tr>
-                                            <td colspan="5" class="text-right text-uppercase"><strong>Total Price:</strong></td>
-                                            <td class="text-right"><strong>$975,00</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" class="text-right text-uppercase"><strong>Total Paid:</strong></td>
-                                            <td class="text-right"><strong>$975,00</strong></td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td colspan="5" class="text-right text-uppercase"><strong>Total Due:</strong></td>
-                                            <td class="text-right"><strong>$0,00</strong></td>
-                                        </tr>
+
+
+
+
+
 
 
                                     </tbody>
@@ -155,11 +115,38 @@
                             </div>
 
 
+                            <form action="../success/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
 
+                                            <center>
+                                                <div class="col-md-12" >
+                                                <select id="example-select" name="yontem" class="form-control" size="1">
+                                                    <option value="0">Ödeme Yöntemi Seçiniz</option>
+                                                    <option value="Kredi Kartı">Kredi Kartı</option>
+                                                    <option value="Nakit">Nakit</option>
 
-
-                            <center><button type="button" class="btn btn-info" onclick="window.location.href='../success/'">Ödemeyi Tamamla</button></center>
+                                                </select>
+                                                     {% for siparis in siparis %}
+                                        {% for urunler in urunler %}
+                                                {% if siparis.bayi_id == user.id %}
+                                                 {% if siparis.urun_id == urunler.id %}
+                                                     {%  if siparis.STATUS == '0'%}
+                                                    <input type="hidden" name="siparis_id" value="{{ siparis.id }}">
+                                                     {% endif %}
+                                            {% endif %}
+                                            {% endif %}
+                                     {% endfor %}
+                                    {% endfor %}
+                                            </div>
+                                            </center>
+                                        </div>
+                                    <br/><br/>
+                                <center><input type="submit" class="btn btn-info" value="Ödemeyi Tamamla"></input></center>
                             <!-- END Products Content -->
+
+                            </form>
+
                         </div>
                         <!-- END Products Block -->
 
@@ -171,90 +158,7 @@
                     </div>
                     <!-- END Page Content -->
 
-                    <!-- Footer -->
-                    <footer class="clearfix">
-                        <div class="pull-right">
-                            Crafted with <i class="fa fa-heart text-danger"></i> by <a href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
-                        </div>
-                        <div class="pull-left">
-                            <span id="year-copy"></span> &copy; <a href="https://1.envato.market/x4R" target="_blank">ProUI 3.8</a>
-                        </div>
-                    </footer>
-                    <!-- END Footer -->
-                </div>
-                <!-- END Main Container -->
-            </div>
-            <!-- END Page Container -->
-        </div>
-        <!-- END Page Wrapper -->
 
-        <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
-        <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
-
-        <!-- User Settings, modal which opens from Settings link (found in top right user menu) and the Cog link (found in sidebar user info) -->
-        <div id="modal-user-settings" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header text-center">
-                        <h2 class="modal-title"><i class="fa fa-pencil"></i> Settings</h2>
-                    </div>
-                    <!-- END Modal Header -->
-
-                    <!-- Modal Body -->
-                    <div class="modal-body">
-                        <form action="index.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
-                            <fieldset>
-                                <legend>Vital Info</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8">
-                                        <p class="form-control-static">Admin</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-email">Email</label>
-                                    <div class="col-md-8">
-                                        <input type="email" id="user-settings-email" name="user-settings-email" class="form-control" value="admin@example.com">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-notifications">Email Notifications</label>
-                                    <div class="col-md-8">
-                                        <label class="switch switch-primary">
-                                            <input type="checkbox" id="user-settings-notifications" name="user-settings-notifications" value="1" checked>
-                                            <span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Password Update</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-password" name="user-settings-password" class="form-control" placeholder="Please choose a complex one..">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="..and confirm it!">
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="form-group form-actions">
-                                <div class="col-xs-12 text-right">
-                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- END Modal Body -->
-                </div>
-            </div>
-        </div>
         <!-- END User Settings -->
 
 {% endblock %}

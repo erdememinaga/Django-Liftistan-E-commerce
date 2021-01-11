@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bayi',
     'lift',
+    'rest_framework',
 
 ]
 
@@ -70,6 +71,15 @@ TEMPLATES = [
         },
     },
 ]
+REST_FRAMEWORK = {
+'DEFAULT_PERMISSION_CLASSES': [
+'rest_framework.permissions.IsAuthenticated',
+],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+
+    ]
+}
 
 WSGI_APPLICATION = 'djangoProject.wsgi.application'
 

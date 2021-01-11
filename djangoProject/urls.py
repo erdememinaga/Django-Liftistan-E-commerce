@@ -21,9 +21,14 @@ from django.urls import path, include
 
 from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
     bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns, bayi_bakim, bayi_profilduzenle
+from lift import views
 from lift.views import home_view, login, register_view
 
 urlpatterns = [
+    path('api/', views.snippet_list),
+    path('api/<int:pk>', views.snippet_detail),
+    path('apibakim/', views.bakim_snippet_list),
+    path('apibakim/<int:pk>', views.bakim_snippet_detail),
     path('admin/', admin.site.urls),
     path('', home_view, name=""),
     path('register/', register_view, name="register"),

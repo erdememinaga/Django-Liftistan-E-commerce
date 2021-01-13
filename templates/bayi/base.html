@@ -65,10 +65,12 @@
                         <div class="sidebar-content">
                             <!-- Chat -->
                             <!-- Chat demo functionality initialized in js/app.js -> chatUi() -->
-                            <a href="page_ready_chat.html" class="sidebar-title">
-                                <i class="gi gi-comments pull-right"></i> <strong>{{ user.username }} Sepeti</strong>
+                            <a href="" class="sidebar-title">
+                                <strong>{{ user.username }} Sepeti</strong>
                             </a>
                             <!-- Chat Users -->
+
+
                             {% for siparis in siparis %}
                           {% for urun in urunler %}
 
@@ -86,13 +88,19 @@
 
 
                             </ul>
+
                                 {% endif %}
                                       {% endif %}
                             {% endif %}
                             {% endfor %}
                             {% endfor %}
 
-<center><button type="button" class="btn btn-info" onclick="window.location.href='../bayi/siparis_detay'">Ödeme yap</button>
+
+                            <center><button type="button" class="btn btn-info" onclick="window.location.href='../bayi/siparis_detay'">Ödeme yap</button>
+
+
+
+
 
                         </div>
                         <!-- END Sidebar Content -->

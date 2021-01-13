@@ -180,31 +180,33 @@ from django.template.loader import render_to_string
 
 def success(request):
     if request.method == 'POST':
-
-
         yontem = request.POST['yontem']
-        siparis_id = request.POST['siparis_id']
-        odeme = Odeme(odeme_turu=yontem,bayiler_siparis_id=siparis_id)
-        odeme.save()
-        urun =request.POST['urun_id']
-        adet = request.POST['adet']
-        urunler = Urun.objects.get(id=urun)
-        urunler.stok -= int(adet)
-        urunler.save()
-    template = render_to_string('bayi/email.html',{'name':request.user.username})
+
+        siparisler = Siparis.objects.filter(bayi_id=request.user.id, STATUS=0)
+        for rs in siparisler:
+            siparis = int(rs.id)
+            odeme = Odeme(odeme_turu=yontem, bayiler_siparis_id=siparis)
+            odeme.save()
+
+            urunler = Urun.objects.get(id=rs.urun.id)
+            urunler.stok -= rs.adet
+            urunler.save()
+
+
+
+    template = render_to_string('bayi/email.html', {'name': request.user.username})
     email = EmailMessage(
         'Ürün Satın Alınmıştır',
         template,
         settings.EMAIL_HOST_USER,
         [request.user.email],
-        )
+    )
     email.fail_slienty = False
     email.send()
+
     id = request.user.id
-    siparis = Siparis.objects.filter(bayi_id=id,STATUS=0)
-
-
-    siparis.update(STATUS =2,tarih=timezone.now())
+    siparis = Siparis.objects.filter(bayi_id=id, STATUS=0)
+    siparis.update(STATUS=2, tarih=timezone.now())
     url = '../bayi/urunlerim'
     resp_body = '<script>alert("Ödemeniz Alındı!");\
                  window.location="%s"</script>' % url

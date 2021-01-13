@@ -33,9 +33,9 @@ class Urun(models.Model):
 
 class Siparis(models.Model):
     STATUS=(
-        ('0','yeni'),
-        ('1','ödendi'),
-        ('2', 'hazırlanma'),
+        ('0','sepette'),
+        ('1','hazırlanıyor'),
+        ('2', 'ödendi'),
         ('3', 'tamamlandı')
     )
     bayi = models.ForeignKey('auth.User', verbose_name='bayi', on_delete=models.CASCADE, related_name='bayi',limit_choices_to={'groups__name': "BayiGrubu"})

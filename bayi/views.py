@@ -26,8 +26,8 @@ def bayi_urunler(request):
     siparis = Siparis.objects.all()
     bayiler = bayi_bilgi.objects.all()
     urunler = Urun.objects.all()
-    b = Siparis.objects.filter(bayi=request.user,STATUS=2).aggregate(Sum("adet"))['adet__sum'] or 0
-    os = Siparis.objects.filter(bayi=request.user, STATUS=1).aggregate(Sum("adet"))['adet__sum'] or 0
+    b = Siparis.objects.filter(bayi=request.user,STATUS=0).aggregate(Sum("adet"))['adet__sum'] or 0
+    os = Siparis.objects.filter(bayi=request.user, STATUS=2).aggregate(Sum("adet"))['adet__sum'] or 0
     ts = Siparis.objects.filter(bayi=request.user, STATUS=3).aggregate(Sum("adet"))['adet__sum'] or 0
     return render(request,'bayi/urunler.html',{'bayiler':bayiler,'siparis':siparis,'urunler':urunler,'b':b,'os':os,'ts':ts})
 def bayi_uruns(request):

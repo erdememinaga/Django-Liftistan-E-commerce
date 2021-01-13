@@ -73,12 +73,12 @@
                                 <table class="table table-bordered table-vcenter">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="width: 100px;">ID</th>
+                                            <th class="text-center" style="width: 100px;">ÜRÜN RESMİ</th>
                                             <th>Ürün Adı</th>
                                             <th class="text-center">Adet</th>
                                             <th class="text-center">Durum</th>
                                             <th class="text-right" style="width: 10%;">BİRİM FİYATI</th>
-                                            <th class="text-right" style="width: 10%;">TOPLAM FİYAT</th>
+                                            <th class="text-right" style="width: 10%;">MİKTAR</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,22 +88,25 @@
                                                  {% if siparis.urun_id == urunler.id %}
                                                      {%  if siparis.STATUS == '0'%}
                                         <tr>
-                                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong>{{ siparis.id }}</strong></a></td>
+                                            <td class="text-center"><a href="page_ecom_product_edit.html"><strong> <img src="{{ urunler.urun_resim.url }}" width="auto" height="125"</strong></a></td>
                                             <td><a href="page_ecom_product_edit.html">{{urunler.urun_adi  }}</a></td>
                                             <td class="text-center"><strong>{{ siparis.adet }}</strong></td>
-                                            <td class="text-center"><strong>{{  siparis.status  }}</strong></td>
+                                            <td class="text-center"><strong>{{  siparis.get_STATUS_display  }}</strong></td>
                                             <td class="text-right"><strong>{{ urunler.fiyat }}</strong></td>
                                             <td class="text-right"><strong>{{ siparis.miktar }}</strong></td>
                                         </tr>
+
+
                                                          {% endif %}
                                             {% endif %}
                                             {% endif %}
                                      {% endfor %}
                                     {% endfor %}
 
-
-
-
+                                    <tr>
+                                            <td colspan="5" class="text-right text-uppercase"><strong>Toplam Fiyat:</strong></td>
+                                            <td class="text-right"><strong>{{ total }}</strong></td>
+                                    </tr>
 
 
 
@@ -133,6 +136,9 @@
                                                  {% if siparis.urun_id == urunler.id %}
                                                      {%  if siparis.STATUS == '0'%}
                                                     <input type="hidden" name="siparis_id" value="{{ siparis.id }}">
+                                                    <input type="hidden" name="urun_id" value="{{ urunler.id }}">
+                                                     <input type="hidden" name="adet" value="{{ siparis.adet }}">
+
                                                      {% endif %}
                                             {% endif %}
                                             {% endif %}

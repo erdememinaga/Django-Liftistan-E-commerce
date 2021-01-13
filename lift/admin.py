@@ -12,7 +12,7 @@ class UrunlerResimInline(admin.TabularInline):
     extra = 3
 
 class UrunlerAdmin(admin.ModelAdmin):
-    list_display = ('urun_adi', 'image_tag', 'model', 'fiyat')  # gösterilecek olan parametreler
+    list_display = ('urun_adi', 'image_tag', 'model', 'fiyat','stok')  # gösterilecek olan parametreler
     search_fields = ('urun_adi',)  # arama
     inlines = [UrunlerResimInline]
     readonly_fields = ('image_tag',)

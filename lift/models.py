@@ -15,6 +15,7 @@ class Urun(models.Model):
     ebat = models.CharField(max_length=100,blank=True)
     fiyat = models.IntegerField()
     fiyat_oran =models.IntegerField(blank=True)
+    stok=models.IntegerField(blank=True)
     class Meta:
         verbose_name = 'Ürün'
         verbose_name_plural = 'Ürünler'

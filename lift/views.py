@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from bayi.models import bayi_bilgi
-from lift.models import Siparis, Bakim, Odeme
+from lift.models import Siparis, Bakim, Odeme,Urun
 from lift.serializers import SiparisSerializers,BakimSerializers
 
 
@@ -180,10 +180,17 @@ from django.template.loader import render_to_string
 
 def success(request):
     if request.method == 'POST':
+
+
         yontem = request.POST['yontem']
         siparis_id = request.POST['siparis_id']
         odeme = Odeme(odeme_turu=yontem,bayiler_siparis_id=siparis_id)
         odeme.save()
+        urun =request.POST['urun_id']
+        adet = request.POST['adet']
+        urunler = Urun.objects.get(id=urun)
+        urunler.stok -= int(adet)
+        urunler.save()
     template = render_to_string('bayi/email.html',{'name':request.user.username})
     email = EmailMessage(
         'Ürün Satın Alınmıştır',
@@ -195,6 +202,8 @@ def success(request):
     email.send()
     id = request.user.id
     siparis = Siparis.objects.filter(bayi_id=id,STATUS=0)
+
+
     siparis.update(STATUS =2,tarih=timezone.now())
     url = '../bayi/urunlerim'
     resp_body = '<script>alert("Ödemeniz Alındı!");\
@@ -211,6 +220,8 @@ def sepete_ekle(request):
         siparis_adet = request.POST["adet"]
         status = 0
         id = request.user.id
+
+
         try:
             a = Siparis.objects.filter(urun_id=urun,bayi_id=id,STATUS=status)
             b = get_object_or_404(Siparis, urun_id=urun,bayi_id=id,STATUS=status)

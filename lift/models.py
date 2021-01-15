@@ -102,7 +102,7 @@ class Recete(models.Model):
         verbose_name_plural = 'Reçeteler'
 
     def __str__(self):
-        return self.urunler
+        return self.char
 
 class Bakim(models.Model):
 

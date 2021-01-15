@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from bayi.models import bayi_bilgi
-from lift.models import Siparis, Bakim, Odeme,Urun
+from lift.models import Siparis, Bakim, Odeme,Urun,Recete,Hammadde
 from lift.serializers import SiparisSerializers,BakimSerializers
 
 
@@ -171,6 +171,7 @@ from django.template.loader import render_to_string
 def success(request):
     if request.method == 'POST':
         yontem = request.POST['yontem']
+        urundizi={}
 
         siparisler = Siparis.objects.filter(bayi_id=request.user.id, STATUS=0)
         for rs in siparisler:
@@ -181,15 +182,39 @@ def success(request):
             urunler = Urun.objects.get(id=rs.urun.id)
             urunler.stok -= rs.adet
             urunler.save()
+            urundizi[urunler.urun_adi] = rs.adet
 
 
+            recete = Recete.objects.filter(urunler_id=rs.urun.id)
+            for rc in recete:
 
-    template = render_to_string('bayi/email.html', {'name': request.user.username})
+                id =int(rc.hammadde_id)
+                hammade =Hammadde.objects.get(id=id)
+                hammade.stok_adet-=rs.adet * rc.adet
+                hammade.save()
+
+
+    template = render_to_string('bayi/email.html', {'name': request.user.username,'urun':urundizi})
     email = EmailMessage(
         'Ürün Satın Alınmıştır',
         template,
         settings.EMAIL_HOST_USER,
-        [request.user.email],
+        ['bera.cay@hotmail.com'],
+    )
+    email.fail_slienty = False
+    email.send()
+    ham = Hammadde.objects.all()
+    hamdizi = {}
+    for ham in ham:
+        if ham.stok_adet <= 20:
+            hamdizi[ham.hammadde_ad] = ham.stok_adet
+
+    template = render_to_string('bayi/hammail.html', {'hamdizi': hamdizi})
+    email = EmailMessage(
+        'Dikkat hammadde azalmaktadır.',
+        template,
+        settings.EMAIL_HOST_USER,
+        ['bera.cay@hotmail.com'],
     )
     email.fail_slienty = False
     email.send()
@@ -201,6 +226,8 @@ def success(request):
     resp_body = '<script>alert("Ödemeniz Alındı!");\
                  window.location="%s"</script>' % url
     return HttpResponse(resp_body)
+
+
 
 
 

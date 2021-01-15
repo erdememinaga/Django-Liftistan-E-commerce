@@ -22,32 +22,29 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 100px;">ID</th>
-                                        <th class="visible-lg">Bayi</th>
                                         <th class="text-center visible-lg">Ürün</th>
-                                        <th class="hidden-xs">Ödeme Yöntemi</th>
-                                        <th class="text-right hidden-xs">Değer</th>
+                                        <th class="text-right hidden-xs">Maliyet</th>
                                         <th>Durum</th>
                                         <th class="hidden-xs text-center">Tarih</th>
-                                        <th class="text-center">Eylem</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685199</strong></a></td>
-                                        <td class="visible-lg"><a href="javascript:void(0)">İstanbul Ataşehir Liftistan </a></td>
-                                        <td class="text-center visible-lg"><a href="javascript:void(0)">4</a></td>
-                                        <td class="hidden-xs">Kred Kartı</td>
-                                        <td class="text-right hidden-xs"><strong>1776,00 TL</strong></td>
-                                        <td><span class="label label-warning">İşlemde</span></td>
-                                        <td class="hidden-xs text-center">25/12/2014</td>
-                                        <td class="text-center">
-                                            <div class="btn-group btn-group-xs">
-                                                <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        {% for bakim in bakim %}
+                                        {% for urunler in urunler %}
+                                            {% if urunler.id == bakim.urunler_id %}
 
+                                    <tr>
+                                        <td class="text-center"><a href=""><strong>{{ bakim.id }}</strong></a></td>
+                                        <td class="text-center visible-lg"><a href="javascript:void(0)">{{ urunler.urun_adi }}</a></td>
+                                        <td class="text-right hidden-xs"><strong>{{ bakim.maliyet }}TL</strong></td>
+                                        <td><span class="label label-warning">{{ bakim.islem_turu }}</span></td>
+                                        <td class="hidden-xs text-center">{{ bakim.sure }}</td>
+
+                                    </tr>
+                                            {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
 
                                 </tbody>
                             </table>

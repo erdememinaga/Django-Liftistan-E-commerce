@@ -123,29 +123,35 @@
                                     <!-- Orders Title -->
                                     <div class="block-title">
                                         <div class="block-options pull-right">
-                                            <span class="label label-success"><strong>$ 2125,00</strong></span>
+                                            
                                         </div>
-                                        <h2><i class="fa fa-truck"></i> <strong>Müşterilerden Gelen Siparişler</strong> (4)</h2>
+                                        <h2><i class="fa fa-truck"></i> <strong>Müşterilerden Gelen Siparişler</strong></h2>
                                     </div>
                                     <!-- END Orders Title -->
 
                                     <!-- Orders Content -->
                                     <table class="table table-bordered table-striped table-vcenter">
                                         <tbody>
+                                        {% for siparis in siparis %}
+                                    {% for urunler in urunler %}
+                                        {% if siparis.bayi_id == user.id  %}
+                                       {% if siparis.urun_id == urunler.id %}
+                                      {% if siparis.STATUS == '1' %}
                                             <tr>
-                                                <td class="text-center" style="width: 100px;"><a href="page_ecom_order_view.html"><strong>Restfull</strong></a></td>
-                                                <td class="hidden-xs" style="width: 15%;"><a href="javascript:void(0)">Api'den</a></td>
-                                                <td class="text-right hidden-xs" style="width: 10%;"><strong>Gelen </strong></td>
-                                                <td><span class="label label-warning">Müşteriler</span></td>
-                                                <td class="hidden-xs">burada</td>
-                                                <td class="hidden-xs text-center">listelenecek</td>
-                                                <td class="text-center" style="width: 70px;">
-                                                    <div class="btn-group btn-group-xs">
-                                                        <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                        <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                                                    </div>
-                                                </td>
+                                                <td class="text-center" style="width: 100px;"><a href=""><strong>{{siparis.id}}</strong></a></td>
+                                                <td class="hidden-xs" style="width: 15%;"><a href="javascript:void(0)">Adet : {{siparis.adet}}</a></td>
+                                                <td class="text-right hidden-xs" style="width: 10%;"><strong>Toplam : {{siparis.miktar}} ₺ </strong></td>
+                                                <td><span class="label label-warning">Hazırlanıyor</span></td>
+                                                <td class="hidden-xs">{{siparis.tarih}}</td>
+
+
                                             </tr>
+                                         {% endif %}
+                              {% endif %}
+                              {% endif %}
+                                {% endfor %}
+                                 {% endfor %}
+
 
                                         </tbody>
                                     </table>

@@ -67,6 +67,13 @@ class Odeme(models.Model):
 
     def __str__(self):
         return self.odeme_turu
+
+
+
+
+
+
+
 class Hammadde(models.Model):
 
     hammadde_ad = models.CharField(max_length=30)

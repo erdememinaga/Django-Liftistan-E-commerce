@@ -5,45 +5,12 @@
 {% load static %}
 
      <div class="row text-center">
-                            <div class="col-sm-6 col-lg-3">
-                                <a href="javascript:void(0)" class="widget widget-hover-effect2">
-                                    <div class="widget-extra themed-background">
-                                        <h4 class="widget-content-light"><strong> Yeni Sipariş</strong> Sayısı</h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 animation-expandOpen">3</span></div>
-                                </a>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <a href="javascript:void(0)" class="widget widget-hover-effect2">
-                                    <div class="widget-extra themed-background-dark">
-                                        <h4 class="widget-content-light"><strong>Günlük</strong> Sipariş</h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen">120</span></div>
-                                </a>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <a href="javascript:void(0)" class="widget widget-hover-effect2">
-                                    <div class="widget-extra themed-background-dark">
-                                        <h4 class="widget-content-light"><strong>Aylık</strong> Sipariş</h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen">3.200</span></div>
-                                </a>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <a href="javascript:void(0)" class="widget widget-hover-effect2">
-                                    <div class="widget-extra themed-background-dark">
-                                        <h4 class="widget-content-light"><strong>Geçen Ay</strong> Sipariş</h4>
-                                    </div>
-                                    <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen">2.850</span></div>
-                                </a>
-                            </div>
-                        </div>
 
     <div class="block full">
                             <!-- All Orders Title -->
                             <div class="block-title">
                                 <div class="block-options pull-right">
-                                    <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="" data-original-title="Settings"><i class="fa fa-cog"></i></a>
+
                                 </div>
                                 <h2><strong>Tüm</strong> Siparişler</h2>
                             </div>
@@ -54,31 +21,57 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 100px;">ID</th>
-                                        <th class="visible-lg">Bayi</th>
-                                        <th class="text-center visible-lg">Ürün</th>
+
+                                        <th class="text-center visible-lg">Ürün ID</th>
                                         <th class="hidden-xs">Ödeme Yöntemi</th>
                                         <th class="text-right hidden-xs">Değer</th>
                                         <th>Durum</th>
                                         <th class="hidden-xs text-center">Tarih</th>
-                                        <th class="text-center">Eylem</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {% for siparis in siparis %}
+                                    {% for urunler in urunler %}
+                                        {% if siparis.bayi_id == user.id  %}
+                                       {% if siparis.urun_id == urunler.id %}
+                                      {% if siparis.STATUS != '0' %}
                                     <tr>
-                                        <td class="text-center"><a href="page_ecom_order_view.html"><strong>ORD.685199</strong></a></td>
-                                        <td class="visible-lg"><a href="javascript:void(0)">İstanbul Ataşehir Liftistan </a></td>
-                                        <td class="text-center visible-lg"><a href="javascript:void(0)">4</a></td>
-                                        <td class="hidden-xs">Kred Kartı</td>
-                                        <td class="text-right hidden-xs"><strong>1776,00 TL</strong></td>
-                                        <td><span class="label label-warning">İşlemde</span></td>
-                                        <td class="hidden-xs text-center">25/12/2014</td>
-                                        <td class="text-center">
-                                            <div class="btn-group btn-group-xs">
-                                                <a href="page_ecom_order_view.html" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                                            </div>
+                                        <td class="text-center"><a href="page_ecom_order_view.html"><strong>{{siparis.id}}</strong></a></td>
+
+                                        <td class="text-center visible-lg"><a href="javascript:void(0)">{{siparis.adet}}</a></td>
+                                        <td class="hidden-xs">
+
+                                            {%for odem in odeme  %}
+                                                {% if odem.bayiler_siparis_id == siparis.id  %}
+                                                        {{odem.odeme_turu}}
+
+                                                {%endif%}
+                                            {%endfor%}
                                         </td>
+                                        <td class="text-right hidden-xs"><strong>{{siparis.miktar}} ₺</strong></td>
+                                        {%if siparis.STATUS == '2'%}
+                                        <td><span class="label label-success">
+                                                    Ödendi
+                                            </span></td>
+                                        {%elif siparis.STATUS == '1' %}
+                                         <td><span class="label label-warning">
+                                                    Hazırlanıyor
+                                            </span></td>
+                                        {%elif siparis.STATUS == '3' %}
+                                         <td><span class="label label-success">
+                                                    Tamamlandı
+                                            </span></td>
+                                        {%endif%}
+
+                                        <td class="hidden-xs text-center">{{siparis.tarih}}</td>
+
                                     </tr>
+                                     {% endif %}
+                              {% endif %}
+                              {% endif %}
+                                {% endfor %}
+                                 {% endfor %}
 
 
                                 </tbody>

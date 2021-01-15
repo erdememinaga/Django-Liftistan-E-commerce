@@ -18,10 +18,7 @@ from lift.serializers import SiparisSerializers,BakimSerializers
 
 @api_view(['GET', 'POST'])
 def snippet_list(request,format='Accept' ):
-    """"
-    List all code snippets, or create a new snippet.
-    :param format:
-    """
+
     if request.method == 'GET':
         snippets = Siparis.objects.all()
         serializer = SiparisSerializers(snippets, many=True)
@@ -35,10 +32,7 @@ def snippet_list(request,format='Accept' ):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['GET', 'POST'])
 def bakim_snippet_list(request,format='Accept' ):
-    """"
-    List all code snippets, or create a new snippet.
-    :param format:
-    """
+
     if request.method == 'GET':
         snippets = Bakim.objects.all()
         serializer = BakimSerializers(snippets, many=True)
@@ -53,9 +47,7 @@ def bakim_snippet_list(request,format='Accept' ):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def snippet_detail(request, pk,format='Accept'):
-    """
-    Retrieve, update or delete a code snippet.
-    """
+
     try:
         snippet = Siparis.objects.get(pk=pk)
     except Siparis.DoesNotExist:
@@ -78,9 +70,7 @@ def snippet_detail(request, pk,format='Accept'):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def bakim_snippet_detail(request, pk,format='Accept'):
-    """
-    Retrieve, update or delete a code snippet.
-    """
+
     try:
         snippet = Bakim.objects.get(pk=pk)
     except Bakim.DoesNotExist:

@@ -14,7 +14,7 @@ class Urun(models.Model):
     model = models.CharField(max_length=100,blank=True)
     ebat = models.CharField(max_length=100,blank=True)
     fiyat = models.IntegerField()
-    fiyat_oran =models.IntegerField(blank=True)
+
     stok=models.IntegerField(blank=True)
     class Meta:
         verbose_name = 'Ürün'
@@ -38,6 +38,7 @@ class Siparis(models.Model):
         ('2', 'ödendi'),
         ('3', 'tamamlandı')
     )
+    fiyat_oran = models.IntegerField(blank=True)
     bayi = models.ForeignKey('auth.User', verbose_name='bayi', on_delete=models.CASCADE, related_name='bayi',limit_choices_to={'groups__name': "BayiGrubu"})
     urun = models.ForeignKey(Urun, on_delete=models.CASCADE)
     adet = models.IntegerField()

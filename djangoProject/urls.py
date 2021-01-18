@@ -51,7 +51,7 @@ urlpatterns = [
     path('profilduzen/<bayis_id>',lift.views.profilduzen,name='profilduzen'),
 
 
-
+    path('musteri_fiyat/', lift.views.musteri_fiyat , name='musteri_fiyat'),
     path('sepete_ekle/', lift.views.sepete_ekle, name='sepete_ekle'),
     path('delete/<id>',lift.views.delete,name='delete')
 ]

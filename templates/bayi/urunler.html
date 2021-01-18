@@ -83,6 +83,7 @@
 
                                         <th>Ürün Adı</th>
                                         <th class="text-right hidden-xs">Fiyat</th>
+                                        <th class="text-right hidden-xs">Fiyat Müşteri</th>
                                         <th class="hidden-xs">Durum</th>
                                         <th class="hidden-xs text-center">Adet</th>
                                         <th class="hidden-xs text-center">Tarih</th>
@@ -99,6 +100,14 @@
 
                                         <td><a href="page_ecom_product_edit.html">{{ urunler.urun_adi }}</a></td>
                                         <td class="text-right hidden-xs"><strong>{{siparis.miktar}} ₺</strong></td>
+                                        <td class="text-right hidden-xs">
+                                            <form action="{% url 'musteri_fiyat'  %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="text" name="musteri_fiyat" value="{{siparis.fiyat_oran}}" />
+                                                <input type="hidden" name="urun" value="{{urunler.id}}">
+                                                <input type="submit"  value="Güncelle" />
+                                            </form>
+                                        </td>
                                         <td class="hidden-xs">
                                             <span class="label label-success">{{ siparis.get_STATUS_display }}</span>
                                         </td>

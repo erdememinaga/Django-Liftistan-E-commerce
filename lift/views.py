@@ -130,6 +130,20 @@ def logout(request):
     auth.logout(request)
 
     return redirect('')
+def musteri_fiyat(request):
+    if request.method == "POST":
+        musteri_fiyat = request.POST["musteri_fiyat"]
+        musteri_fiyat = int(musteri_fiyat)
+        urun = request.POST['urun']
+        id = request.user.id
+        a = Siparis.objects.filter(urun_id=urun, bayi_id=id )
+
+        a.update(fiyat_oran=musteri_fiyat)
+        url = '../bayi/urunlerim'
+        resp_body = '<script>alert("Fiyat Güncellendi!");\
+                         window.location="%s"</script>' % url
+        return HttpResponse(resp_body)
+
 
 def register_view(request):
     return render(request, 'register.html',{})
@@ -238,6 +252,7 @@ def sepete_ekle(request):
         urun = request.POST[ "urun" ]
         siparis_adet = request.POST["adet"]
         status = 0
+        fiyat_oran = 0
         id = request.user.id
 
 
@@ -246,13 +261,13 @@ def sepete_ekle(request):
             b = get_object_or_404(Siparis, urun_id=urun,bayi_id=id,STATUS=status)
             a.update(adet=int(siparis_adet) + int(b.adet))
         except:
-            urunler = Siparis(bayi_id=id, urun_id=urun, STATUS=status, adet=siparis_adet, tarih=timezone.now())
+            urunler = Siparis(bayi_id=id, urun_id=urun, STATUS=status, adet=siparis_adet, tarih=timezone.now(),fiyat_oran=fiyat_oran)
             urunler.save()
 
 
 
 
-        messages.success(request, " Sepete Eklendi")
+
         return redirect('/bayi/urunler')
     else:
         return HttpResponseRedirect("/")

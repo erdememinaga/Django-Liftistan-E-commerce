@@ -1,0 +1,76 @@
+{% extends 'bayi/base.html' %}
+
+{% block body %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="page-content">
+                        <!-- FAQ Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-info"></i>Hakkimizda<br><small>Bize sorulan sorular</small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Sayfa</li>
+                            <li><a href="">Hakkimizda ve Sorular</a></li>
+                        </ul>
+                        <!-- END FAQ Header -->
+
+                        <!-- FAQ Block -->
+                        <div class="block block-alt-noborder">
+                            <!-- FAQ Content -->
+                            <div class="row">
+                                <div class="col-md-6 col-lg-3 col-lg-offset-1">
+                                    <div class="block-section">
+                                        <h3 class="sub-header text-center"><strong>Merak edilen sorular ve hakkimizda</strong></h3>
+                                        <p class="clearfix"><i class="f fa-5x text-danger pull-left animation-pulse"></i>Sitemizi geliştirmek için her gün çalışıyoruz </strong></span> bir sorunuz olduğunda lütfen bizimle iletişime geçiniz.</p>
+                                        <p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-lg-offset-1">
+                                    <!-- Intro Content -->
+                                    <h3 class="sub-header"><strong>Hoşgeldiniz</strong></h3>
+                                    <div id="faq1" class="panel-group">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"><i class="fa fa-angle-right"></i> <a class="accordion-toggle" data-toggle="collapse" data-parent="#faq1" href="#faq1_q1">Biz kimiz?</a></h4>
+                                            </div>
+                                            <div id="faq1_q1" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <p>Lift satışı yapan bayilere daha kolay müşteriler ile buluşması için web sitemizde hizmet sunuyoruz. Liftistan olarak bu amaçla kısa süre önce aktif olarak çalışmaktayız.</p>
+                                                    <p class="remove-margin"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"><i class="fa fa-angle-right"></i> <a class="accordion-toggle" data-toggle="collapse" data-parent="#faq1" href="#faq1_q2">Bayiler nasıl ürün alabilir</a></h4>
+                                            </div>
+                                            <div id="faq1_q2" class="panel-collapse collapse">
+                                                <div class="panel-body">Bayi giriş yaptıktan sonra ticaret panelinden ürün seç kısmına girerek ürün alabilir.</div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"><i class="fa fa-angle-right"></i> <a class="accordion-toggle" data-toggle="collapse" data-parent="#faq1" href="#faq1_q3">Sayfa hakkındaki problemleri kime ileteceğiz?</a></h4>
+                                            </div>
+                                            <div id="faq1_q3" class="panel-collapse collapse">
+                                                <div class="panel-body">Sayfa hakkındaki bütün problemlerinizi iletişim yerinde bulunan sosyal medya ve Email yoluyla mail atarak bize ulaşabilirsiniz. En kısa süre içinde sze dönüş yapılacaktır.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Intro Content -->
+</body>
+</html>
+{% endblock %}
+

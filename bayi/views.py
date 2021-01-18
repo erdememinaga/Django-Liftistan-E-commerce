@@ -88,3 +88,6 @@ def bayi_profil_duzenle(request):
     bayiler = bayi_bilgi.objects.all()
     urunler = Urun.objects.all()
     return render(request,'bayi/profil_duzenle.html', {'bayiler':bayiler,'siparis':siparis,'urunler':urunler})
+def hakkimizda(request):
+    return render(request, 'bayi/hakkimizda.html',{} )
+

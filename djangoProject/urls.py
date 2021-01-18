@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from bayi.views import bayi_view, bayi_urunekle, bayi_bayilist, bayi_urunsiparis, bayi_urunler, bayi_bayidetay, \
-    bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns, bayi_bakim, bayi_profilduzenle
+    bayi_siparisdetay, bayi_siparisozet, bayi_siparis, bayi_profil_duzenle, bayi_uruns, bayi_bakim, bayi_profilduzenle,hakkimizda
 from lift import views
 from lift.views import home_view, login, register_view
 
@@ -47,6 +47,7 @@ urlpatterns = [
     path('logout/', lift.views.logout, name='logout'),
     path('singup/', lift.views.singup, name='singup'),
     path('success/',lift.views.success, name='success'),
+    path('hakkimizda/', hakkimizda, name='hakkimizda'),
 
     path('profilduzen/<bayis_id>',lift.views.profilduzen,name='profilduzen'),
 

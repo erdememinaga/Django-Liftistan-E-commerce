@@ -23,7 +23,6 @@ class SiparisAdmin(admin.ModelAdmin):
     readonly_fields = ('bayi','urun','adet','tarih',)
     search_fields = ('bayi',) #arama
 
-
 class User(admin.ModelAdmin):
     list_display = ('')
 
